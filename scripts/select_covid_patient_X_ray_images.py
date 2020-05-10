@@ -21,9 +21,7 @@ metadata_csv = pd.read_csv(metadata)
 
 # loop over the rows of the COVID-19 data frame
 for (i, row) in metadata_csv.iterrows():
-	if row["finding"] != virus or row["view"] != x_ray_view:
-		continue
-
-	filename = row["filename"].split(os.path.sep)[-1]
-	filePath = os.path.sep.join([imageDir, filename])
-	shutil.copy2(filePath, outputDir)
+	if row["finding"] == virus and row["view"] == x_ray_view:
+            filename = row["filename"].split(os.path.sep)[-1]
+            filePath = os.path.sep.join([imageDir, filename])
+            shutil.copy2(filePath, outputDir)
